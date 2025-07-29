@@ -31,16 +31,23 @@
             display: ['Merriweather', 'serif'],
           },
           animation: {
-            'fade-in': 'fadeIn 0.5s ease-out',
-            'slide-up': 'slideUp 0.6s ease-out',
-            'scale-in': 'scaleIn 0.5s ease-out',
+            'fade-in': 'fadeIn 0.4s ease-out forwards',
+            'slide-up': 'slideUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
+            'scale-in': 'scaleIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
             'gentle-bounce': 'gentleBounce 3s infinite',
             'float': 'float 4s ease-in-out infinite',
             'gentle-pulse': 'gentlePulse 3s ease-in-out infinite',
             'slow-rotate': 'slowRotate 20s linear infinite',
+            'envelope-open': 'envelopeOpen 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+            'section-slide': 'sectionSlide 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+            'quick-fade': 'quickFade 0.3s ease-out forwards',
           },
           keyframes: {
             fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            quickFade: {
               '0%': { opacity: '0' },
               '100%': { opacity: '1' },
             },
@@ -68,6 +75,16 @@
               '0%': { transform: 'rotate(0deg)' },
               '100%': { transform: 'rotate(360deg)' },
             },
+            envelopeOpen: {
+              '0%': { transform: 'translateY(0) rotateX(0)' },
+              '30%': { transform: 'translateY(-30px) rotateX(0)' },
+              '60%': { transform: 'translateY(-30px) rotateX(-180deg)' },
+              '100%': { transform: 'translateY(0) rotateX(-180deg)' },
+            },
+            sectionSlide: {
+              '0%': { opacity: '0', transform: 'translateX(30px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
           },
         },
       },
@@ -93,6 +110,7 @@
     /* Enhanced envelope styles */
     .envelope-container {
       perspective: 1000px;
+      transform-style: preserve-3d;
     }
     
     .envelope {
@@ -104,6 +122,7 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
       transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       margin: 0 auto;
+      transform-style: preserve-3d;
     }
     
     .envelope::before {
@@ -117,6 +136,7 @@
       clip-path: polygon(0 0, 100% 0, 50% 100%);
       border-radius: 6px 6px 0 0;
       transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform-origin: top;
     }
     
     .envelope::after {
@@ -128,11 +148,19 @@
       font-size: 1.8rem;
       color: #4A0E4E;
       opacity: 0.3;
+      transition: opacity 0.3s ease;
+    }
+    
+    .envelope.opened {
+      animation: envelopeOpen 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
     
     .envelope.opened::before {
-      transform: rotateX(-180deg);
-      transform-origin: top center;
+      transform: rotateX(180deg);
+    }
+    
+    .envelope.opened::after {
+      opacity: 0;
     }
     
     .card {
@@ -186,21 +214,27 @@
     
     .section {
       opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateX(30px);
+      transition: none;
       min-height: 100vh;
       width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding: 2rem 1rem;
-      position: relative;
+      position: absolute;
+      top: 0;
+      left: 0;
       overflow: hidden;
     }
     
-    .section.show {
-      opacity: 1;
-      transform: translateY(0);
+    .section.active {
+      position: relative;
+      animation: sectionSlide 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    
+    .section.hide {
+      animation: quickFade 0.3s ease-out reverse forwards;
     }
 
     /* Instagram-style Sticky Navigation */
@@ -330,6 +364,7 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       cursor: pointer;
       transition: all 0.3s ease;
+      animation: quickFade 0.3s ease-out forwards;
     }
     
     .music-player:hover {
@@ -369,10 +404,14 @@
     
     @media (prefers-reduced-motion: reduce) {
       * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+      }
+      
+      .section {
+        opacity: 1 !important;
+        transform: none !important;
+        position: relative !important;
       }
     }
   </style>
@@ -381,12 +420,12 @@
 <body class="bg-cream text-slate-800 relative overflow-x-hidden">
   <!-- Background Music (Gamelan Bali) -->
   <audio id="bgMusic" loop>
-    <source src="Cinematic Backsound Kolaborasi Instrument Bali by Sugi Art.mp3" type="audio/mpeg">
+    <source src="/Cinematic Backsound Kolaborasi Instrument Bali by Sugi Art.mp3" type="audio/mpeg">
     <!-- Replace with actual Gamelan music -->
   </audio>
   
   <!-- Music Player Control -->
-  <div class="music-player animate-scale-in" id="musicPlayer">
+  <div class="music-player" id="musicPlayer">
     <i class="fas fa-music text-gold"></i>
   </div>
   
@@ -424,7 +463,7 @@
   </div>
 
   <!-- ENVELOPE SECTION -->
-  <section class="section show flex flex-col items-center justify-center text-center px-4" id="home">
+  <section class="section active" id="home">
     <div class="absolute inset-0 opacity-5">
       <i class="fas fa-mandala absolute top-1/4 left-1/4 text-6xl sm:text-8xl text-sacred animate-slow-rotate"></i>
       <i class="fas fa-temple-hindu absolute bottom-1/4 right-1/4 text-4xl sm:text-6xl text-gold animate-gentle-pulse"></i>
@@ -439,32 +478,34 @@
         </div>
       </div>
       
-      <div class="animate-fade-in" style="animation-delay: 0.3s;">
-        <h1 class="text-2xl sm:text-3xl md:text-4xl font-display mb-3 sm:mb-4 text-sacred">
-          <i class="fas fa-prayer-beads mr-2 sm:mr-3 text-gold animate-gentle-pulse"></i>
-          Undangan Metatah Bali
-        </h1>
-        <p class="mb-4 sm:mb-6 text-base sm:text-lg leading-relaxed max-w-lg mx-auto">
-          <i class="fas fa-hands-praying mr-2 text-gold"></i>
-          Dengan hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri upacara suci 
-          <span class="font-semibold text-sacred">Metatah (Potong Gigi)</span>
-        </p>
-        
-        <button
-          class="btn-primary text-white px-6 py-2 sm:px-8 sm:py-3 rounded-full shadow-lg font-bold text-base sm:text-lg relative z-10"
-          onclick="openInvitation()"
-          aria-label="Buka Undangan"
-        >
-          <i class="fas fa-envelope-open mr-2"></i>
-          Buka Undangan
-          <i class="fas fa-heart ml-2 animate-gentle-pulse"></i>
-        </button>
-        
-        <div class="mt-4 sm:mt-6 animate-gentle-bounce" style="animation-delay: 1s;">
-          <p class="text-xs sm:text-sm text-gray-600 italic mb-1 sm:mb-2">Klik untuk membuka</p>
-          <i class="fas fa-hand-pointer text-gold text-lg sm:text-xl"></i>
-        </div>
-      </div>
+      <div class="animate-fade-in text-center w-full" style="animation-delay: 0.3s;">
+  <div class="flex flex-col items-center justify-center">
+    <h1 class="text-2xl sm:text-3xl md:text-4xl font-display mb-3 sm:mb-4 text-sacred">
+      <i class="fas fa-prayer-beads mr-2 sm:mr-3 text-gold animate-gentle-pulse"></i>
+      Undangan Metatah Bali
+    </h1>
+    <p class="mb-4 sm:mb-6 text-base sm:text-lg leading-relaxed max-w-lg mx-auto">
+      <i class="fas fa-hands-praying mr-2 text-gold"></i>
+      Dengan hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri upacara suci 
+      <span class="font-semibold text-sacred">Metatah (Potong Gigi)</span>
+    </p>
+    
+    <button
+      class="btn-primary text-white px-6 py-2 sm:px-8 sm:py-3 rounded-full shadow-lg font-bold text-base sm:text-lg relative z-10"
+      onclick="openInvitation()"
+      aria-label="Buka Undangan"
+    >
+      <i class="fas fa-envelope-open mr-2"></i>
+      Buka Undangan
+      <i class="fas fa-heart ml-2 animate-gentle-pulse"></i>
+    </button>
+    
+    <div class="mt-4 sm:mt-6 animate-gentle-bounce" style="animation-delay: 1s;">
+      <p class="text-xs sm:text-sm text-gray-600 italic mb-1 sm:mb-2">Klik untuk membuka</p>
+      <i class="fas fa-hand-pointer text-gold text-lg sm:text-xl"></i>
+    </div>
+  </div>
+</div>
     </div>
   </section>
 
@@ -679,21 +720,6 @@
     </div>
   </section>
 
-  <!-- FALLBACK IF JS OFF -->
-  <noscript>
-    <style>
-      .section {
-        display: flex !important;
-        opacity: 1 !important;
-        transform: none !important;
-      }
-      
-      .music-player {
-        display: none !important;
-      }
-    </style>
-  </noscript>
-
   <!-- SCRIPT -->
   <script>
     // Initialize when DOM is loaded
@@ -749,28 +775,6 @@
         });
       });
       
-      // Show section when scrolled to
-      const sections = document.querySelectorAll('.section');
-      const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const sectionId = entry.target.id;
-            const stickyNav = document.getElementById('stickyNav');
-            
-            if (sectionId === 'home') {
-              stickyNav.classList.remove('show');
-            } else {
-              stickyNav.classList.add('show');
-              updateNavActiveState(sectionId);
-            }
-          }
-        });
-      }, { threshold: 0.5 });
-      
-      sections.forEach(section => {
-        sectionObserver.observe(section);
-      });
-      
       // Initialize first section if coming from anchor link
       if (window.location.hash) {
         const sectionId = window.location.hash.substring(1);
@@ -789,9 +793,7 @@
       
       // Hide first section with fade out
       const firstSection = document.getElementById('home');
-      firstSection.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-      firstSection.style.opacity = '0';
-      firstSection.style.transform = 'translateY(-20px)';
+      firstSection.classList.add('hide');
       
       // Show sticky navigation
       const stickyNav = document.getElementById('stickyNav');
@@ -799,17 +801,24 @@
       
       // Show first content section after delay
       setTimeout(() => {
+        firstSection.classList.remove('active');
         firstSection.style.display = 'none';
         showSection('section1');
-      }, 600);
+      }, 300); // Match this with the hide animation duration
     }
 
     function showSection(id) {
       // Hide all sections first
       document.querySelectorAll('.section').forEach(section => {
-        if (section.id !== id) {
-          section.classList.remove('show');
-          section.style.display = 'none';
+        if (section.classList.contains('active')) {
+          section.classList.remove('active');
+          section.classList.add('hide');
+          
+          // After hide animation completes, remove from display
+          setTimeout(() => {
+            section.style.display = 'none';
+            section.classList.remove('hide');
+          }, 300);
         }
       });
       
@@ -818,10 +827,11 @@
       if (section) {
         section.style.display = 'flex';
         setTimeout(() => {
-          section.classList.add('show');
+          section.classList.add('active');
+          
           // Smooth scroll to section
           window.scrollTo({
-            top: section.offsetTop,
+            top: 0,
             behavior: 'smooth'
           });
           
@@ -839,7 +849,7 @@
         // Hide all content sections
         document.querySelectorAll('.section').forEach(section => {
           if (section.id !== 'home') {
-            section.classList.remove('show');
+            section.classList.remove('active');
             section.style.display = 'none';
           }
         });
@@ -848,8 +858,20 @@
         const homeSection = document.getElementById('home');
         if (homeSection) {
           homeSection.style.display = 'flex';
-          homeSection.style.opacity = '1';
-          homeSection.style.transform = 'translateY(0)';
+          homeSection.classList.add('active');
+          
+          // Reset envelope
+          const envelope = document.getElementById('envelope');
+          if (envelope) {
+            envelope.classList.remove('opened');
+          }
+          
+          // Hide sticky navigation
+          const stickyNav = document.getElementById('stickyNav');
+          stickyNav.classList.remove('show');
+          
+          // Update nav state
+          updateNavActiveState('home');
           
           // Smooth scroll to top
           window.scrollTo({
@@ -860,23 +882,11 @@
           // Reset URL hash
           history.pushState(null, null, ' ');
         }
-        
-        // Reset envelope
-        const envelope = document.getElementById('envelope');
-        if (envelope) {
-          envelope.classList.remove('opened');
-        }
-        
-        // Hide sticky navigation
-        const stickyNav = document.getElementById('stickyNav');
-        stickyNav.classList.remove('show');
-        
-        // Update nav state
-        updateNavActiveState('home');
       } else {
         // Ensure home section is hidden
         const homeSection = document.getElementById('home');
         if (homeSection) {
+          homeSection.classList.remove('active');
           homeSection.style.display = 'none';
         }
         
