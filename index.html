@@ -112,7 +112,7 @@
       overflow-x: hidden;
     }
     
-    /* Enhanced envelope styles */
+    
     .envelope-container {
       perspective: 1000px;
       transform-style: preserve-3d;
@@ -209,7 +209,7 @@
       box-shadow: 0 8px 20px rgba(74, 14, 78, 0.3);
     }
     
-    /* Floating decorative elements */
+    
     .floating-element {
       position: absolute;
       opacity: 0.1;
@@ -240,20 +240,20 @@
       animation: quickFade 0.3s ease-out reverse forwards;
     }
 
-    /* Instagram-style Sticky Navigation */
+    /* Sticky Navigation */
     .sticky-nav {
   position: fixed;
-  bottom: 0; /* Changed from 1rem to 0 to stick to bottom */
-  left: 0; /* Changed from 50% to 0 for full width */
-  right: 0; /* Added to span full width */
-  width: 100%; /* Ensure full width */
+  bottom: 0;
+  left: 0; 
+  right: 0; 
+  width: 100%; 
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   display: flex;
-  justify-content: center; /* Center the nav container */
-  padding: 0 1rem; /* Add some side padding */
+  justify-content: center; 
+  padding: 0 1rem; 
 }
 
 .sticky-nav.show {
@@ -266,16 +266,16 @@
   gap: 0.5rem;
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(15px);
-  border-radius: 25px 25px 0 0; /* Rounded top corners only */
+  border-radius: 25px 25px 0 0; 
   padding: 0.5rem;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
   border: 1px solid rgba(212, 175, 55, 0.2);
-  width: 100%; /* Take full width of parent */
-  max-width: 600px; /* Optional: Set a max-width for larger screens */
-  justify-content: center; /* Center the buttons */
+  width: 100%; 
+  max-width: 600px; 
+  justify-content: center;
 }
 
-/* Rest of your existing styles remain unchanged */
+
 .nav-button {
   width: 44px;
   height: 44px;
@@ -415,13 +415,12 @@
     @media (max-width: 767px) {
   body {
     position: relative;
-    overflow-y: auto; /* Ensures scrolling works if content overflows */
-    background-image: url('your-image.jpg'); /* Replace with your image path */
-    background-size: cover; /* Ensures full coverage */
-    background-position: center center; /* Centers the image */
-    background-attachment: fixed; /* Optional: Prevents background from scrolling */
-    background-repeat: no-repeat; /* Prevents tiling */
-    min-height: 100vh; /* Ensures body takes full viewport height */
+    overflow-y: auto;
+    background-size: cover; 
+    background-position: center center; 
+    background-attachment: fixed; 
+    background-repeat: no-repeat; 
+    min-height: 100vh; 
   }
 }
       
@@ -681,7 +680,7 @@
     </div>
   </section>
 
-  <!-- SECTION 3: RSVP / UCAPAN -->
+  <!-- SECTION 3: UCAPAN -->
   <section id="section3" class="section">
     <div class="max-w-3xl mx-auto text-center w-full">
       <div class="card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12">
