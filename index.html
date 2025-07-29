@@ -413,10 +413,17 @@
     }
     
     @media (max-width: 767px) {
-      body {
-        position: relative;
-        overflow-y: auto;
-      }
+  body {
+    position: relative;
+    overflow-y: auto; /* Ensures scrolling works if content overflows */
+    background-image: url('your-image.jpg'); /* Replace with your image path */
+    background-size: cover; /* Ensures full coverage */
+    background-position: center center; /* Centers the image */
+    background-attachment: fixed; /* Optional: Prevents background from scrolling */
+    background-repeat: no-repeat; /* Prevents tiling */
+    min-height: 100vh; /* Ensures body takes full viewport height */
+  }
+}
       
       .section {
         position: relative;
