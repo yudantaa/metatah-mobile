@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Undangan Metatah Bali</title>
+  <meta name="description" content="Undangan Metatah Bali - I Dewa Gede Yudanta Agasta Wiasmara dan keluarga" />
+  <meta property="og:title" content="Undangan Metatah Bali">
+  <meta property="og:description" content="Kami mengundang kehadiran Anda dalam upacara suci Metatah.">
+  <meta property="og:image" content="your-thumbnail.jpg">
+  <meta property="og:url" content="https://example.com">
+  <meta name="theme-color" content="#D4AF37" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FFF8E1',
+            gold: '#D4AF37',
+            sacred: '#4A0E4E',
+            softGold: '#F4E7A1',
+            darkGold: '#B8941F',
+          },
+          fontFamily: {
+            serif: ['"Noto Serif Balinese"', 'serif'],
+            sans: ['Poppins', 'sans-serif'],
+            display: ['Merriweather', 'serif'],
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-out',
+            'slide-up': 'slideUp 0.6s ease-out',
+            'scale-in': 'scaleIn 0.5s ease-out',
+            'gentle-bounce': 'gentleBounce 3s infinite',
+            'float': 'float 4s ease-in-out infinite',
+            'gentle-pulse': 'gentlePulse 3s ease-in-out infinite',
+            'slow-rotate': 'slowRotate 20s linear infinite',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            scaleIn: {
+              '0%': { opacity: '0', transform: 'scale(0.95)' },
+              '100%': { opacity: '1', transform: 'scale(1)' },
+            },
+            gentleBounce: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            gentlePulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.7' },
+            },
+            slowRotate: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Noto+Serif+Balinese&family=Poppins:wght@400;600;700&display=swap">
+  
+  <style>
+    html { 
+      scroll-behavior: smooth; 
+      overflow-x: hidden;
+    }
+    
+    body { 
+      background: linear-gradient(135deg, #FFF8E1 0%, #F4E7A1 50%, #FFF8E1 100%);
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      overflow-x: hidden;
+    }
+    
+    /* Enhanced envelope styles */
+    .envelope-container {
+      perspective: 1000px;
+    }
+    
+    .envelope {
+      position: relative;
+      width: 180px;
+      height: 120px;
+      background: linear-gradient(135deg, #f8f6f0, #e8e3d3);
+      border-radius: 6px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      margin: 0 auto;
+    }
+    
+    .envelope::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(135deg, #D4AF37, #b8941f);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      border-radius: 6px 6px 0 0;
+      transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .envelope::after {
+      content: '✉';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.8rem;
+      color: #4A0E4E;
+      opacity: 0.3;
+    }
+    
+    .envelope.opened::before {
+      transform: rotateX(-180deg);
+      transform-origin: top center;
+    }
+    
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #4A0E4E, #D4AF37);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(74, 14, 78, 0.2);
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s;
+    }
+    
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(74, 14, 78, 0.3);
+    }
+    
+    /* Floating decorative elements */
+    .floating-element {
+      position: absolute;
+      opacity: 0.1;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Instagram-style Sticky Navigation */
+    .sticky-nav {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .sticky-nav.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .nav-container {
+      display: flex;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(15px);
+      border-radius: 25px;
+      padding: 0.5rem;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .nav-button {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      background: rgba(74, 14, 78, 0.1);
+      color: #4A0E4E;
+      font-size: 1.1rem;
+    }
+
+    .nav-button:hover {
+      transform: scale(1.1);
+      background: rgba(74, 14, 78, 0.15);
+      box-shadow: 0 4px 10px rgba(74, 14, 78, 0.2);
+    }
+
+    .nav-button.active {
+      background: linear-gradient(135deg, #4A0E4E, #D4AF37);
+      color: white;
+      box-shadow: 0 4px 10px rgba(74, 14, 78, 0.3);
+    }
+
+    .nav-button.active:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 15px rgba(74, 14, 78, 0.4);
+    }
+
+    .nav-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .nav-button:hover::before {
+      left: 100%;
+    }
+
+    /* Tooltip styles */
+    .nav-tooltip {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .nav-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 4px solid transparent;
+      border-top-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .nav-button:hover .nav-tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(-5px);
+    }
+    
+    /* Music player */
+    .music-player {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .music-player:hover {
+      transform: scale(1.1);
+      background: rgba(255, 255, 255, 1);
+    }
+    
+    .music-player.playing i {
+      color: #4A0E4E;
+    }
+    
+    /* Responsive adjustments */
+    @media (min-width: 768px) {
+      .envelope {
+        width: 200px;
+        height: 140px;
+      }
+      
+      .envelope::before {
+        height: 70px;
+      }
+      
+      .section {
+        padding: 3rem 2rem;
+      }
+      
+      .nav-button {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .music-player {
+        width: 50px;
+        height: 50px;
+      }
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-cream text-slate-800 relative overflow-x-hidden">
+  <!-- Background Music (Gamelan Bali) -->
+  <audio id="bgMusic" loop>
+    <source src="Cinematic Backsound Kolaborasi Instrument Bali by Sugi Art.mp3" type="audio/mpeg">
+    <!-- Replace with actual Gamelan music -->
+  </audio>
+  
+  <!-- Music Player Control -->
+  <div class="music-player animate-scale-in" id="musicPlayer">
+    <i class="fas fa-music text-gold"></i>
+  </div>
+  
+  <!-- Floating Decorative Elements -->
+  <div class="floating-element top-10 left-5 sm:left-10">
+    <i class="fas fa-lotus text-4xl sm:text-6xl text-gold animate-slow-rotate"></i>
+  </div>
+  <div class="floating-element top-20 right-5 sm:right-10">
+    <i class="fas fa-om text-3xl sm:text-4xl text-sacred animate-gentle-pulse"></i>
+  </div>
+  <div class="floating-element bottom-20 left-10 sm:left-20">
+    <i class="fas fa-dharmachakra text-4xl sm:text-5xl text-gold animate-slow-rotate" style="animation-delay: 10s;"></i>
+  </div>
+
+  <!-- INSTAGRAM-STYLE STICKY NAVIGATION -->
+  <div class="sticky-nav" id="stickyNav">
+    <div class="nav-container">
+      <div class="nav-button" data-section="home">
+        <i class="fas fa-home"></i>
+        <div class="nav-tooltip">Beranda</div>
+      </div>
+      <div class="nav-button" data-section="section1">
+        <i class="fas fa-calendar-alt"></i>
+        <div class="nav-tooltip">Detail Acara</div>
+      </div>
+      <div class="nav-button" data-section="section2">
+        <i class="fas fa-map-marker-alt"></i>
+        <div class="nav-tooltip">Lokasi</div>
+      </div>
+      <div class="nav-button" data-section="section3">
+        <i class="fas fa-heart"></i>
+        <div class="nav-tooltip">RSVP</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENVELOPE SECTION -->
+  <section class="section show flex flex-col items-center justify-center text-center px-4" id="home">
+    <div class="absolute inset-0 opacity-5">
+      <i class="fas fa-mandala absolute top-1/4 left-1/4 text-6xl sm:text-8xl text-sacred animate-slow-rotate"></i>
+      <i class="fas fa-temple-hindu absolute bottom-1/4 right-1/4 text-4xl sm:text-6xl text-gold animate-gentle-pulse"></i>
+    </div>
+    
+    <div class="relative z-10 max-w-2xl mx-auto animate-scale-in">
+      <div class="envelope-container mb-6 sm:mb-8">
+        <div class="envelope animate-gentle-bounce" id="envelope">
+          <div class="absolute top-2 sm:top-3 left-1/2 transform -translate-x-1/2 w-6 h-6 sm:w-8 sm:h-8 bg-sacred rounded-full flex items-center justify-center z-10">
+            <i class="fas fa-om text-gold text-xs sm:text-sm"></i>
+          </div>
+        </div>
+      </div>
+      
+      <div class="animate-fade-in" style="animation-delay: 0.3s;">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-display mb-3 sm:mb-4 text-sacred">
+          <i class="fas fa-prayer-beads mr-2 sm:mr-3 text-gold animate-gentle-pulse"></i>
+          Undangan Metatah Bali
+        </h1>
+        <p class="mb-4 sm:mb-6 text-base sm:text-lg leading-relaxed max-w-lg mx-auto">
+          <i class="fas fa-hands-praying mr-2 text-gold"></i>
+          Dengan hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri upacara suci 
+          <span class="font-semibold text-sacred">Metatah (Potong Gigi)</span>
+        </p>
+        
+        <button
+          class="btn-primary text-white px-6 py-2 sm:px-8 sm:py-3 rounded-full shadow-lg font-bold text-base sm:text-lg relative z-10"
+          onclick="openInvitation()"
+          aria-label="Buka Undangan"
+        >
+          <i class="fas fa-envelope-open mr-2"></i>
+          Buka Undangan
+          <i class="fas fa-heart ml-2 animate-gentle-pulse"></i>
+        </button>
+        
+        <div class="mt-4 sm:mt-6 animate-gentle-bounce" style="animation-delay: 1s;">
+          <p class="text-xs sm:text-sm text-gray-600 italic mb-1 sm:mb-2">Klik untuk membuka</p>
+          <i class="fas fa-hand-pointer text-gold text-lg sm:text-xl"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 1: DETAIL ACARA -->
+  <section id="section1" class="section">
+    <div class="max-w-4xl mx-auto text-center w-full">
+      <div class="card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 mb-8 animate-scale-in">
+        <div class="mb-6 sm:mb-8">
+          <i class="fas fa-dharmachakra text-4xl sm:text-5xl text-gold mb-3 sm:mb-4 animate-slow-rotate"></i>
+          <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-sacred mb-3 sm:mb-4 font-display">
+            Om Awighnam Astu Namo Siddham
+          </h2>
+          <div class="w-24 sm:w-32 h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-4 sm:mb-6"></div>
+        </div>
+        
+        <p class="mb-6 text-base sm:text-lg leading-relaxed text-slate-700">
+          <i class="fas fa-hands-holding-heart mr-2 text-gold"></i>
+          Dengan penuh rasa syukur kepada <span class="font-semibold text-sacred">Ida Sang Hyang Widhi Wasa</span>, 
+          kami mengundang kehadiran Bapak/Ibu/Saudara/i dalam acara Metatah anak-anak kami:
+        </p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8 max-w-3xl mx-auto">
+          <div class="card p-3 sm:p-4 rounded-lg sm:rounded-xl animate-slide-up" style="animation-delay: 0.2s;">
+            <i class="fas fa-user-circle text-xl sm:text-2xl text-sacred mb-1 sm:mb-2"></i>
+            <p class="font-semibold text-sacred text-sm sm:text-base">I Dewa Gede Yudanta Agasta Wiasmara</p>
+          </div>
+          <div class="card p-3 sm:p-4 rounded-lg sm:rounded-xl animate-slide-up" style="animation-delay: 0.4s;">
+            <i class="fas fa-user-circle text-xl sm:text-2xl text-sacred mb-1 sm:mb-2"></i>
+            <p class="font-semibold text-sacred text-sm sm:text-base">I Dewa Ayu Putri Purwani</p>
+          </div>
+          <div class="card p-3 sm:p-4 rounded-lg sm:rounded-xl animate-slide-up" style="animation-delay: 0.6s;">
+            <i class="fas fa-user-circle text-xl sm:text-2xl text-sacred mb-1 sm:mb-2"></i>
+            <p class="font-semibold text-sacred text-sm sm:text-base">I Dewa Gede Sidi Astawa Mantra</p>
+          </div>
+          <div class="card p-3 sm:p-4 rounded-lg sm:rounded-xl animate-slide-up" style="animation-delay: 0.8s;">
+            <i class="fas fa-user-circle text-xl sm:text-2xl text-sacred mb-1 sm:mb-2"></i>
+            <p class="font-semibold text-sacred text-sm sm:text-base">I Dewa Gede Raditya Artha Prabawa</p>
+          </div>
+        </div>
+        
+        <div class="mb-6 sm:mb-8">
+          <p class="mb-3 sm:mb-4 text-base sm:text-lg">
+            <i class="fas fa-calendar-alt mr-2 text-gold"></i>
+            Yang akan dilaksanakan pada:
+          </p>
+          <div class="bg-gradient-to-r from-softGold to-cream p-4 sm:p-6 rounded-lg sm:rounded-xl inline-block">
+            <p class="font-bold text-lg sm:text-xl text-sacred mb-1 sm:mb-2">
+              <i class="fas fa-clock mr-2 text-gold"></i>
+              Selasa, 19 Agustus 2025
+            </p>
+            <p class="text-slate-700 text-sm sm:text-base">Pukul 09.00 WITA - selesai</p>
+            <p class="font-semibold text-sacred mt-2 sm:mt-3 text-sm sm:text-base">
+              <i class="fas fa-map-marker-alt mr-2 text-gold"></i>
+              Griya Bang Suarga Manuabe
+            </p>
+            <p class="text-slate-600 text-xs sm:text-sm">Jl. Muding Indah III No.3, Badung, Bali</p>
+          </div>
+        </div>
+        
+        <button
+          onclick="showSection('section2')"
+          class="btn-primary text-white px-6 py-2 sm:px-8 sm:py-3 rounded-full shadow-lg font-bold text-base sm:text-lg"
+        >
+          <i class="fas fa-map-marked-alt mr-2"></i>
+          Lihat Lokasi
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: PETA & LOKASI -->
+  <section id="section2" class="section">
+    <div class="max-w-5xl mx-auto text-center w-full">
+      <div class="card rounded-2xl sm:rounded-3xl p-6 sm:p-8 mb-8">
+        <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-sacred mb-6 sm:mb-8 font-display">
+          <i class="fas fa-globe-asia mr-2 sm:mr-3 text-gold animate-gentle-pulse"></i>
+          Lokasi Acara
+        </h2>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
+          <div class="text-left space-y-3 sm:space-y-4">
+            <div class="flex items-center mb-3 sm:mb-4">
+              <div class="bg-gold/20 p-2 sm:p-3 rounded-full mr-3 sm:mr-4">
+                <i class="fas fa-home text-xl sm:text-2xl text-gold"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-sacred text-base sm:text-lg">Griya Bang Suarga Manuabe</h3>
+                <p class="text-slate-600 text-xs sm:text-sm">Tempat Upacara Suci</p>
+              </div>
+            </div>
+            
+            <div class="flex items-center mb-3 sm:mb-4">
+              <div class="bg-gold/20 p-2 sm:p-3 rounded-full mr-3 sm:mr-4">
+                <i class="fas fa-map-marker-alt text-xl sm:text-2xl text-gold"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-sacred text-base sm:text-lg">Alamat Lengkap</h3>
+                <p class="text-slate-600 text-xs sm:text-sm">Jl. Muding Indah III No.3, Kerobokan, Kec. Kuta Utara, Kabupaten Badung, Bali</p>
+              </div>
+            </div>
+            
+            <div class="flex items-center">
+              <div class="bg-gold/20 p-2 sm:p-3 rounded-full mr-3 sm:mr-4">
+                <i class="fas fa-directions text-xl sm:text-2xl text-gold"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-sacred text-base sm:text-lg">Petunjuk Arah</h3>
+                <p class="text-slate-600 text-xs sm:text-sm">Klik peta untuk membuka Google Maps</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="animate-scale-in">
+            <div class="aspect-video rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.2166665!2d115.1791!3d-8.6537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd240e0b2d89b21%3A0x5e2fb6a09f1e6b5b!2sJl.%20Muding%20Indah%20III%20No.3%2C%20Kerobokan%2C%20Kec.%20Kuta%20Utara%2C%20Kabupaten%20Badung%2C%20Bali!5e0!3m2!1sen!2sid!4v1643234567890!5m2!1sen!2sid" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                class="group-hover:scale-105 transition-transform duration-700">
+              </iframe>
+            </div>
+          </div>
+        </div>
+        
+        <button
+          onclick="showSection('section3')"
+          class="btn-primary text-white px-6 py-2 sm:px-8 sm:py-3 rounded-full shadow-lg font-bold text-base sm:text-lg mt-6 sm:mt-8"
+        >
+          <i class="fas fa-reply mr-2"></i>
+          Konfirmasi Kehadiran
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: RSVP / UCAPAN -->
+  <section id="section3" class="section">
+    <div class="max-w-3xl mx-auto text-center w-full">
+      <div class="card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12">
+        <div class="mb-6 sm:mb-8">
+          <i class="fas fa-heart text-4xl sm:text-5xl text-gold mb-3 sm:mb-4 animate-gentle-pulse"></i>
+          <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-sacred mb-3 sm:mb-4 font-display">
+            Konfirmasi Kehadiran
+          </h2>
+          <div class="w-24 sm:w-32 h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-4 sm:mb-6"></div>
+        </div>
+        
+        <p class="mb-6 text-base sm:text-lg leading-relaxed text-slate-700">
+          <i class="fas fa-hands-praying mr-2 text-gold"></i>
+          Kehadiran dan doa restu Bapak/Ibu/Saudara/i merupakan kehormatan bagi keluarga kami. 
+          Silakan kirim ucapan atau konfirmasi kehadiran melalui WhatsApp:
+        </p>
+        
+        <div class="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+          <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-4 sm:p-6 rounded-lg sm:rounded-xl border border-green-200">
+            <h3 class="font-bold text-sacred mb-1 sm:mb-2 text-base sm:text-lg">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              Konfirmasi Hadir
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-600 mb-3 sm:mb-4">Beritahu kami jika Anda dapat hadir</p>
+            <a
+              href="https://wa.me/6281234567890?text=Terima%20kasih%20atas%20undangannya.%20Saya%20akan%20hadir%20di%20acara%20Metatah"
+              target="_blank"
+              class="inline-flex items-center bg-green-500 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full hover:bg-green-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 text-sm sm:text-base"
+            >
+              <i class="fab fa-whatsapp text-lg sm:text-xl mr-2"></i>
+              Konfirmasi Hadir
+            </a>
+          </div>
+          
+          <div class="bg-gradient-to-r from-blue-50 to-sky-50 p-4 sm:p-6 rounded-lg sm:rounded-xl border border-blue-200">
+            <h3 class="font-bold text-sacred mb-1 sm:mb-2 text-base sm:text-lg">
+              <i class="fas fa-comment-heart text-blue-500 mr-2"></i>
+              Kirim Ucapan
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-600 mb-3 sm:mb-4">Berikan ucapan dan doa untuk anak-anak kami</p>
+            <a
+              href="https://wa.me/6281234567890?text=Selamat%20untuk%20acara%20Metatah.%20Semoga%20upacara%20berjalan%20lancar"
+              target="_blank"
+              class="inline-flex items-center bg-blue-500 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full hover:bg-blue-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 text-sm sm:text-base"
+            >
+              <i class="fab fa-whatsapp text-lg sm:text-xl mr-2"></i>
+              Kirim Ucapan
+            </a>
+          </div>
+        </div>
+        
+        <div class="bg-gradient-to-r from-cream to-softGold p-4 sm:p-6 rounded-lg sm:rounded-xl">
+          <p class="italic text-slate-700 mb-3 sm:mb-4 text-sm sm:text-base">
+            <i class="fas fa-gratitude mr-2 text-gold"></i>
+            Atas kehadiran dan doa restu Bapak/Ibu/Saudara/i, kami ucapkan terima kasih yang sebesar-besarnya.
+          </p>
+          <p class="font-serif text-sacred text-lg sm:text-xl mb-1 sm:mb-2">
+            <i class="fas fa-om mr-2 text-gold animate-slow-rotate"></i>
+            ॐ शान्ति शान्ति शान्ति ॐ
+          </p>
+          <p class="italic text-gold font-display text-sm sm:text-base">Om Shanti Shanti Shanti Om</p>
+        </div>
+      </div>
+      
+      <!-- Back to Top -->
+      <button 
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+        class="mt-6 sm:mt-8 bg-gold text-white p-2 sm:p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 animate-float"
+      >
+        <i class="fas fa-chevron-up text-lg sm:text-xl"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- FALLBACK IF JS OFF -->
+  <noscript>
+    <style>
+      .section {
+        display: flex !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      
+      .music-player {
+        display: none !important;
+      }
+    </style>
+  </noscript>
+
+  <!-- SCRIPT -->
+  <script>
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Music player functionality
+      const bgMusic = document.getElementById('bgMusic');
+      const musicPlayer = document.getElementById('musicPlayer');
+      let musicPlaying = false;
+      
+      // Try to autoplay music (may be blocked by browser)
+      function tryAutoplay() {
+        const playPromise = bgMusic.play();
+        
+        if (playPromise !== undefined) {
+          playPromise.then(_ => {
+            musicPlaying = true;
+            musicPlayer.classList.add('playing');
+          })
+          .catch(error => {
+            musicPlaying = false;
+            musicPlayer.classList.remove('playing');
+          });
+        }
+      }
+      
+      // Try autoplay when user interacts with the page
+      document.body.addEventListener('click', function() {
+        if (!musicPlaying) {
+          tryAutoplay();
+        }
+      }, { once: true });
+      
+      // Toggle music on/off
+      musicPlayer.addEventListener('click', function() {
+        if (musicPlaying) {
+          bgMusic.pause();
+          musicPlaying = false;
+          musicPlayer.classList.remove('playing');
+        } else {
+          bgMusic.play();
+          musicPlaying = true;
+          musicPlayer.classList.add('playing');
+        }
+      });
+      
+      // Navigation functionality
+      const navButtons = document.querySelectorAll('.nav-button');
+      
+      navButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const sectionId = button.dataset.section;
+          navigateToSection(sectionId);
+        });
+      });
+      
+      // Show section when scrolled to
+      const sections = document.querySelectorAll('.section');
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const sectionId = entry.target.id;
+            const stickyNav = document.getElementById('stickyNav');
+            
+            if (sectionId === 'home') {
+              stickyNav.classList.remove('show');
+            } else {
+              stickyNav.classList.add('show');
+              updateNavActiveState(sectionId);
+            }
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      sections.forEach(section => {
+        sectionObserver.observe(section);
+      });
+      
+      // Initialize first section if coming from anchor link
+      if (window.location.hash) {
+        const sectionId = window.location.hash.substring(1);
+        if (sectionId && document.getElementById(sectionId)) {
+          setTimeout(() => {
+            navigateToSection(sectionId);
+          }, 300);
+        }
+      }
+    });
+    
+    function openInvitation() {
+      // Animate envelope opening
+      const envelope = document.getElementById('envelope');
+      envelope.classList.add('opened');
+      
+      // Hide first section with fade out
+      const firstSection = document.getElementById('home');
+      firstSection.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+      firstSection.style.opacity = '0';
+      firstSection.style.transform = 'translateY(-20px)';
+      
+      // Show sticky navigation
+      const stickyNav = document.getElementById('stickyNav');
+      stickyNav.classList.add('show');
+      
+      // Show first content section after delay
+      setTimeout(() => {
+        firstSection.style.display = 'none';
+        showSection('section1');
+      }, 600);
+    }
+
+    function showSection(id) {
+      // Hide all sections first
+      document.querySelectorAll('.section').forEach(section => {
+        if (section.id !== id) {
+          section.classList.remove('show');
+          section.style.display = 'none';
+        }
+      });
+      
+      // Show target section
+      const section = document.getElementById(id);
+      if (section) {
+        section.style.display = 'flex';
+        setTimeout(() => {
+          section.classList.add('show');
+          // Smooth scroll to section
+          window.scrollTo({
+            top: section.offsetTop,
+            behavior: 'smooth'
+          });
+          
+          // Update URL hash
+          history.pushState(null, null, `#${id}`);
+        }, 50);
+      }
+
+      // Update navigation active state
+      updateNavActiveState(id);
+    }
+
+    function navigateToSection(sectionId) {
+      if (sectionId === 'home') {
+        // Hide all content sections
+        document.querySelectorAll('.section').forEach(section => {
+          if (section.id !== 'home') {
+            section.classList.remove('show');
+            section.style.display = 'none';
+          }
+        });
+        
+        // Show and reset home section
+        const homeSection = document.getElementById('home');
+        if (homeSection) {
+          homeSection.style.display = 'flex';
+          homeSection.style.opacity = '1';
+          homeSection.style.transform = 'translateY(0)';
+          
+          // Smooth scroll to top
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+          
+          // Reset URL hash
+          history.pushState(null, null, ' ');
+        }
+        
+        // Reset envelope
+        const envelope = document.getElementById('envelope');
+        if (envelope) {
+          envelope.classList.remove('opened');
+        }
+        
+        // Hide sticky navigation
+        const stickyNav = document.getElementById('stickyNav');
+        stickyNav.classList.remove('show');
+        
+        // Update nav state
+        updateNavActiveState('home');
+      } else {
+        // Ensure home section is hidden
+        const homeSection = document.getElementById('home');
+        if (homeSection) {
+          homeSection.style.display = 'none';
+        }
+        
+        // Show sticky navigation
+        const stickyNav = document.getElementById('stickyNav');
+        stickyNav.classList.add('show');
+        
+        // Show the requested section
+        showSection(sectionId);
+      }
+    }
+
+    function updateNavActiveState(activeSection) {
+      const navButtons = document.querySelectorAll('.nav-button');
+      navButtons.forEach(button => {
+        button.classList.remove('active');
+        if (button.dataset.section === activeSection) {
+          button.classList.add('active');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
