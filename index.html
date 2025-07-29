@@ -517,7 +517,7 @@
         <div class="flex flex-col items-center justify-center">
           <h1 class="text-2xl sm:text-3xl md:text-4xl font-display mb-3 sm:mb-4 text-sacred">
             <i class="fas fa-prayer-beads mr-2 sm:mr-3 text-gold animate-gentle-pulse"></i>
-            Undangan Metatah
+            Undangan
           </h1>
           <p class="mb-4 sm:mb-6 text-base sm:text-lg leading-relaxed max-w-lg mx-auto">
             <i class="fas fa-hands-praying mr-2 text-gold"></i>
@@ -809,41 +809,35 @@
     }
 
     function showSection(id) {
-      // Hide all sections first
-      document.querySelectorAll('.section').forEach(section => {
-        if (section.classList.contains('active')) {
-          section.classList.remove('active');
-          section.classList.add('hide');
-          
-          // After hide animation completes, remove from display
-          setTimeout(() => {
-            section.style.display = 'none';
-            section.classList.remove('hide');
-          }, 300);
-        }
-      });
-      
-      // Show target section
-      const section = document.getElementById(id);
-      if (section) {
-        section.style.display = 'flex';
-        setTimeout(() => {
-          section.classList.add('active');
-          
-          // Smooth scroll to section
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          });
-          
-          // Update URL hash
-          history.pushState(null, null, `#${id}`);
-        }, 50);
-      }
-
-      // Update navigation active state
-      updateNavActiveState(id);
+  // Hide all sections first
+  document.querySelectorAll('.section').forEach(section => {
+    if (section.classList.contains('active') && section.id !== id) {
+      section.classList.remove('active');
+      section.style.display = 'none'; // Remove immediately without animation
     }
+  });
+  
+  // Show target section
+  const section = document.getElementById(id);
+  if (section) {
+    section.style.display = 'flex';
+    // Force reflow before adding active class
+    void section.offsetHeight;
+    section.classList.add('active');
+    
+    // Smooth scroll to top
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    
+    // Update URL hash
+    history.pushState(null, null, `#${id}`);
+  }
+
+  // Update navigation active state
+  updateNavActiveState(id);
+}
 
     function navigateToSection(sectionId) {
       if (sectionId === 'home') {
